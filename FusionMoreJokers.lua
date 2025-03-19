@@ -19,7 +19,6 @@ FusionMoreJokers.fusions = {
 function SMODS.INIT.FusionMoreJokers()
     --requires FusionJokers to be loaded
     if SMODS.INIT.FusionJokers then
-    
     	local mod_id = "FusionMoreJokers"
     	local mod_obj = SMODS.findModByID(mod_id)
     	
@@ -36,31 +35,24 @@ function SMODS.INIT.FusionMoreJokers()
     	--j_speedrun
     	local speedrun_def = {
     		name = "Speedrun",
-    		text = {
-				"Allows {C:attention}Straights{} to be",
-            	"made with gaps of {C:attention}1 rank",
-                "Gains {C:red}+#2#{} if played hand contains a Straight",
-				"{C:inactive}(Currently {C:red}+#1#{C:inactive} Mult)",
+    		text = {"Allows {C:attention}Straights{} to be",
+            		"made with gaps of {C:attention}1 rank",
+                	"Gains {C:red}+#2#{} if played hand contains a Straight",
+			"{C:inactive}(Currently {C:red}+#1#{C:inactive} Mult)",
     			"{C:inactive}(#3# + #4#)"
-    		}
+			}
     	}
     	
-    	local speedrun = SMODS.Joker:new("Speedrun", "speedrun", {extra = {mult = 15, add_mult = 3, joker1 = "j_runner", joker2 = "j_shortcut"
+    	local speedrun = SMODS.Joker:new("Speedrun", "speedrun", {extra = {mult = 15, mult_add = 3, joker1 = "j_runner", joker2 = "j_shortcut"
     	}}, { x = 0, y = 0 }, speedrun_def, 5, 12, true, false, false, true)
     	SMODS.Sprite:new("j_speedrun", mod_obj.path, "j_speedrun.png", 71, 95, "asset_atli"):register();
     	speedrun:register()
     
     	function SMODS.Jokers.j_speedrun.loc_def(card)
-    		return {
+    		return {card.ability.mult, card.ability.mult_add,
     		localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'}, 
     		localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}}
     	end
-    
-    	function SMODS.Jokers.j_speedrun.calculate(card, context)
-		if next(context.poker_hands["Straight"]) then
-			card.ability.mult = card.ability.mult + card.ability.add_mult
-		end
-	end
 end
 
 	----------------------------------------------
