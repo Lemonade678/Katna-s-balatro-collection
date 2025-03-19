@@ -53,6 +53,7 @@ function SMODS.INIT.FusionMoreJokers()
     		localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'}, 
     		localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}}
     	end
+	FusionJokers.fusions:add_fusion("j_runner", nil, false, "j_shortcut", nil, false, "j_speedrun", 10)
 end
 
 	----------------------------------------------
