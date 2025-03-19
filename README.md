@@ -1,2 +1,2 @@
 # Katna-s-balatro-collection
-fan made mod for fusion joker add on that 
+This is personal add on to Fusion joker made By lemon & katna
