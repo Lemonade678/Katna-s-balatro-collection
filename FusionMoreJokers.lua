@@ -16,16 +16,6 @@ FusionMoreJokers.fusions = {
 		{ name = "j_shortcut", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_speedrun", cost = 5 },
 }
-
-local function has_joker(val)
-	for k, v in pairs(G.jokers.cards) do
-		if v.ability.set == 'Joker' and v.config.center_key == val then 
-			return k
-		end
-	end
-	return -1
-end
-
 function SMODS.INIT.FusionMoreJokers()
     --requires FusionJokers to be loaded
     if SMODS.INIT.FusionJokers then
@@ -67,11 +57,11 @@ function SMODS.INIT.FusionMoreJokers()
     	end
     
     	function SMODS.Jokers.j_speedrun.calculate(card, context)
-			if context.evaluate_hand then
-				skipped_rank = true
-			end
+		if next(context.poker_hands["Straight"]) then
+			card.ability.mult = card.ability.mult + card.ability.add_mult
 		end
 	end
+end
 
 	----------------------------------------------
 	----------------------------------------------
